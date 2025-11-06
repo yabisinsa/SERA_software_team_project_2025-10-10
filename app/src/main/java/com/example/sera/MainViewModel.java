@@ -1,4 +1,4 @@
-package com.example.sera_project2;
+package com.example.sera;
 import android.os.Handler;
 import android.os.Looper;
 

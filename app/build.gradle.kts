@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.sera_project2"
+    namespace = "com.example.sera"
     compileSdk {
         version = release(36)
     }

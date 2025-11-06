@@ -1,11 +1,11 @@
-package com.example.sera_project2;
+package com.example.sera;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.View;
 
 // ViewBinding Import
-import com.example.sera_project2.databinding.ActivityMainBinding;
+import com.example.sera.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
