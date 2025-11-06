@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a1654"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#2a2664"
+        android:elevation="4dp">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <TextView
+                android:id="@+id/logoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="S.E.R.A."
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:layout_gravity="start" />
+            <ImageButton
+                android:id="@+id/menuButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_menu"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="16dp"
+                android:layout_gravity="end" />
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/starBackgroundAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:lottie_rawRes="@raw/background_sparkles_2"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:scaleType="centerCrop"
+        android:elevation="-1dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/idleGroup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/textViewPrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오늘 당신의 목소리는 어떤가요?"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/micButtonContainer"
+            android:layout_marginBottom="64dp"/>
+
+        <FrameLayout
+            android:id="@+id/micButtonContainer"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            app:layout_constraintTop_toBottomOf="@id/textViewPrompt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textViewInstruction">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_circle_effect"
+                android:layout_gravity="center"/>
+
+            <ImageButton
+                android:id="@+id/recordButton"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:src="@drawable/ic_mic"
+                android:background="@drawable/circle_button_background"
+                android:scaleType="fitCenter"
+                android:padding="32dp"
+                android:layout_gravity="center"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textViewInstruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="마이크 버튼을 눌러 녹음을 시작하세요"
+            android:textColor="#B0B0B0"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/micButtonContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="64dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/recordingGroup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/recordingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="녹음 중..."
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:drawableStart="@drawable/dot_red"
+            android:drawablePadding="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/timeLabel"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:layout_marginTop="64dp" />
+
+        <TextView
+            android:id="@+id/timeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="00:01"
+            android:textColor="@android:color/white"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/recordingText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/waveformAnimation"
+            android:layout_marginTop="16dp" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/waveformAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginHorizontal="32dp"
+            app:lottie_rawRes="@raw/waveform"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_colorFilter="@color/mint_color"
+            app:layout_constraintTop_toBottomOf="@id/timeLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/stopRecordButton"
+            android:layout_marginTop="32dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stopRecordButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="녹음 완료"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="12dp"
+            app:icon="@drawable/ic_check"
+            app:iconTint="@android:color/white"
+            app:iconGravity="textStart"
+            app:backgroundTint="@color/mint_color"
+            app:cornerRadius="8dp"
+            app:layout_constraintTop_toBottomOf="@id/waveformAnimation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="64dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/analyzingGroup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ProgressBar
+            android:id="@+id/analyzingRing"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/mint_color"
+            style="?android:attr/progressBarStyleLarge"
+            app:layout_constraintTop_toTopOf="@id/analyzingMicCard"
+            app:layout_constraintBottom_toBottomOf="@id/analyzingMicCard"
+            app:layout_constraintStart_toStartOf="@id/analyzingMicCard"
+            app:layout_constraintEnd_toEndOf="@id/analyzingMicCard" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/analyzingMicCard"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:cardBackgroundColor="@color/mint_color"
+            app:cardCornerRadius="40dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/analyzingText"
+            app:layout_constraintVertical_bias="0.45"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_mic"
+                app:tint="@android:color/white" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/analyzingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="감정을 분석하고 있어요..."
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/analyzingMicCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/analyzingTextSub"
+            android:layout_marginTop="32dp"/>
+
+        <TextView
+            android:id="@+id/analyzingTextSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="잠시만 기다려주세요."
+            android:textColor="#B0B0B0"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/analyzingText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/dotsLoadingLottie"
+            android:layout_marginTop="8dp"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/dotsLoadingLottie"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            app:lottie_rawRes="@raw/dots_loading"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_colorFilter="@color/mint_color"
+            app:layout_constraintTop_toBottomOf="@id/analyzingTextSub"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/dimOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#80000000"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/menuPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="#CC2A2664"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="16dp">
+            <TextView
+                android:id="@+id/menu_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_profile"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="12dp"
+                android:text="프로필"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:drawableTint="@android:color/white" />
+            <TextView
+                android:id="@+id/menu_upload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_folder"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="12dp"
+                android:text="파일 업로드"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:drawableTint="@android:color/white" />
+            <TextView
+                android:id="@+id/menu_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_history"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="12dp"
+                android:text="기록 보기"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:drawableTint="@android:color/white" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/menuGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="dimOverlay,menuPanel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
