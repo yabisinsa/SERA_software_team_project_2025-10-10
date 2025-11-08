@@ -43,14 +43,14 @@ $ npm start
 # 4. Tasks & Responsibilities (작업 및 역할 분담)
 |  |  |  |  |  |  |  |  |
 |-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
-| 김형진    |  <img src="" alt="김형진" width="100"> | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 개발</li></ul>     |
-| 박기훈    |  <img src="" alt="박기훈" width="100"> | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 개발</li></ul>     |
-| 손영주    |  <img src="" alt="손영주" width="100"> | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 개발</li></ul>     |
-| 안의진    |  <img src="" alt="안의진" width="100"> | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 개발</li></ul>     |
-| 윤시훈    |  <img src="" alt="윤시훈" width="100"> | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 개발</li></ul>     |
-| 임민하    |  <img src="" alt="임민하" width="100"> | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 개발</li></ul>     |
-| 장나정    |  <img src="" alt="장나정" width="100"> | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 개발</li></ul>     |
-| 지훈    |  <img src="" alt="지훈" width="100"> | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 개발</li></ul>     |
+| 김형진    |  <img src="" alt="김형진" width="100"> | <ul><li>전체 프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>서버 개발</li></ul>     |
+| 박기훈    |  <img src="" alt="박기훈" width="100"> | <ul><li>어플리케이션 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 앱 개발</li></ul>     |
+| 손영주    |  <img src="" alt="손영주" width="100"> | <ul><li>어플리케이션 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 앱 개발</li></ul>     |
+| 안의진    |  <img src="" alt="안의진" width="100"> | <ul><li>API서버 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>서버 개발</li></ul>     |
+| 윤시훈    |  <img src="" alt="윤시훈" width="100"> | <ul><li>API서버 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>서버 개발</li></ul>     |
+| 임민하    |  <img src="" alt="임민하" width="100"> | <ul><li>어플리케이션 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 앱 개발</li></ul>     |
+| 장나정    |  <img src="" alt="장나정" width="100"> | <ul><li>어플리케이션 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 앱 개발</li></ul>     |
+| 지훈    |  <img src="" alt="지훈" width="100"> | <ul><li>API서버 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>서버 개발</li></ul>     |
 </ul>    |
 
 <br/>
@@ -69,24 +69,18 @@ $ npm start
 
 
 # 6. Project Structure (프로젝트 구조)
-```plaintext
-project/
-├── public/
-│   ├── index.html           # HTML 템플릿 파일
-│   └── favicon.ico          # 아이콘 파일
-├── src/
-│   ├── assets/              # 이미지, 폰트 등 정적 파일
-│   ├── components/          # 재사용 가능한 UI 컴포넌트
-│   ├── hooks/               # 커스텀 훅 모음
-│   ├── pages/               # 각 페이지별 컴포넌트
-│   ├── App.js               # 메인 애플리케이션 컴포넌트
-│   ├── index.js             # 엔트리 포인트 파일
-│   ├── index.css            # 전역 css 파일
-│   ├── firebaseConfig.js    # firebase 인스턴스 초기화 파일
-│   package-lock.json    # 정확한 종속성 버전이 기록된 파일로, 일관된 빌드를 보장
-│   package.json         # 프로젝트 종속성 및 스크립트 정의
-├── .gitignore               # Git 무시 파일 목록
-└── README.md                # 프로젝트 개요 및 사용법
+## 6.1 Sever Structure (서버 구조)
+```
+SERA_software_team_project_2025-10-10-1/
+│   ├── feature_extractor.py/     # 음성값 뽑아오기 파일
+│   ├── emotion_model.pkl/        # 음성값으로 감정 분류 모델(sera모델)
+│   ├── gender_predictor.py/      #성별 감지 파일 
+│   ├── gender_predictor.pkl/     # 성별 감지 모델
+│   ├── requirements.txt/         # 필수 라이브러리 목록 파일
+│   ├── Dockerfile/               # 서버 환경 구축 설명서 파일
+│   ├── .dockerignore/            # 불필요한 파일 제외 파일
+├── .gitignore                    # Git 무시 파일 목록
+└── README.md                     # 프로젝트 개요 및 사용법
 ```
 
 <br/>
