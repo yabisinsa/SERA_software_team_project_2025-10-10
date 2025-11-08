@@ -76,9 +76,9 @@ SERA_software_team_project_2025-10-10-1/
 │   ├── emotion_model.pkl/        # 음성값으로 감정 분류 모델(sera모델)
 │   ├── gender_predictor.py/      #성별 감지 파일 
 │   ├── gender_predictor.pkl/     # 성별 감지 모델
-│   ├── requirements.txt/         # 메인 애플리케이션 컴포넌트
-│   ├── Dockerfile/               # 메인 애플리케이션 컴포넌트
-│   ├── .dockerignore/            # 메인 애플리케이션 컴포넌트
+│   ├── requirements.txt/         # 필수 라이브러리 목록 파일
+│   ├── Dockerfile/               # 서버 환경 구축 설명서 파일
+│   ├── .dockerignore/            # 불필요한 파일 제외 파일
 ├── .gitignore                    # Git 무시 파일 목록
 └── README.md                     # 프로젝트 개요 및 사용법
 ```
