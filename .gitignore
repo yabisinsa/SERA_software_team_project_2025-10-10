@@ -1,0 +1,30 @@
+Python 캐시 파일
+
+pycache/
+*.pyc
+*.pyo
+*.pyd
+
+IDE 설정
+
+.vscode/
+
+OS 파일
+
+.DS_Store
+
+--- (매우 중요) ---
+
+데이터셋과 학습 관련 파일은 GitHub에 올리지 않습니다.
+
+dataset/
+wav_file/
+*.zip
+*.csv
+
+학습/테스트 스크립트 (서버 실행과 무관)
+
+train_emotion_model.py
+test_model.py
+create_dummy_model.py
+create_dummy_emotion_model.py

@@ -1,0 +1,25 @@
+파이썬 캐시 파일
+
+pycache/
+*.pyc
+*.pyo
+*.pyd
+
+가상 환경
+
+venv/
+.venv/
+
+IDE 설정
+
+.vscode/
+.idea/
+
+Git
+
+.git/
+.gitignore
+
+OS 파일
+
+.DS_Store
