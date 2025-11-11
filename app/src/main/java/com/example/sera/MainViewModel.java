@@ -24,6 +24,9 @@ public class MainViewModel extends ViewModel {
         long secs = seconds % 60;
         return String.format("%02d:%02d", mins, secs);
     });
+    // --- 결과 화면 이동 신호 ---
+    private final MutableLiveData<Boolean> _navigateToResult = new MutableLiveData<>(false);
+    public LiveData<Boolean> navigateToResult() { return _navigateToResult; }
 
     // --- 타이머 로직 ---
     private final Handler timerHandler = new Handler(Looper.getMainLooper());
@@ -50,11 +53,11 @@ public class MainViewModel extends ViewModel {
             timerHandler.removeCallbacks(timerRunnable); // 타이머 중지
             System.out.println("Stop recording and start analyzing");
 
-            // 분석 시뮬레이션 (3초)
+            // 분석 시뮬레이션 (3초) 더미 로직
             _isAnalyzing.setValue(true);
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 _isAnalyzing.setValue(false);
-                System.out.println("Analysis complete");
+                _navigateToResult.postValue(true); // [수정] 결과 화면으로 '이동 신호'를 보냄
             }, 3000);
 
         } else {
@@ -64,6 +67,11 @@ public class MainViewModel extends ViewModel {
             timerHandler.post(timerRunnable); // 타이머 시작
             System.out.println("Start recording");
         }
+    }
+
+    // --- [추가] 결과 화면 이동 신호 리셋 ---
+    public void onResultNavigationDone() {
+        _navigateToResult.setValue(false);
     }
 
     @Override

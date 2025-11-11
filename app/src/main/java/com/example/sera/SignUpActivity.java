@@ -12,7 +12,7 @@ import android.widget.Toast;
 import android.content.Intent;
 import java.util.Random; // Random 클래스 추가
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends BaseActivity {
 
     private EditText nameEditText;
     private EditText emailEditText;
@@ -80,24 +80,5 @@ public class SignUpActivity extends AppCompatActivity {
     /**
      * 지정된 View ID 배열에 star_float_twinkle 애니메이션을 랜덤 딜레이와 함께 적용합니다.
      */
-    private void applyStarAnimation(int[] starIds) {
-        final Animation starAnimation = AnimationUtils.loadAnimation(this, R.anim.star_float_twinkle);
-        final Random random = new Random();
 
-        for (int id : starIds) {
-            final View starView = findViewById(id);
-            if (starView != null) {
-                // 0ms ~ 1500ms 사이의 랜덤 딜레이 생성
-                long delayMillis = random.nextInt(1500);
-
-                // 딜레이 후에 애니메이션 시작
-                starView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        starView.startAnimation(starAnimation);
-                    }
-                }, delayMillis);
-            }
-        }
-    }
 }

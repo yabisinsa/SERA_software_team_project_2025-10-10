@@ -11,42 +11,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/dark_blue_gradient" />
 
-    <!-- 별 1 (ID 추가) -->
-    <View
-        android:id="@+id/star_1"
-        android:layout_width="3dp" android:layout_height="3dp" android:background="@drawable/star_dot"
-        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="50dp" android:layout_marginStart="80dp" />
-    <!-- 별 2 (ID 추가) -->
-    <View
-        android:id="@+id/star_2"
-        android:layout_width="2.5dp" android:layout_height="2.5dp" android:background="@drawable/star_dot"
-        app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="80dp" android:layout_marginEnd="120dp" />
-    <!-- 별 3 (ID 추가) -->
-    <View
-        android:id="@+id/star_3"
-        android:layout_width="4dp" android:layout_height="4dp" android:background="@drawable/star_dot"
-        app:layout_constraintTop_toBottomOf="@+id/login_content_container" app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="30dp" android:layout_marginStart="40dp" />
-    <!-- 별 4 (ID 추가) -->
-    <View
-        android:id="@+id/star_4"
-        android:layout_width="3.5dp" android:layout_height="3.5dp" android:background="@drawable/star_dot"
-        app:layout_constraintBottom_toTopOf="@+id/login_content_container" app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="20dp" android:layout_marginEnd="70dp" />
-    <!-- 별 5 (ID 추가) -->
-    <View
-        android:id="@+id/star_5"
-        android:layout_width="2.5dp" android:layout_height="2.5dp" android:background="@drawable/star_dot"
-        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="100dp" android:layout_marginStart="150dp" />
-    <!-- 별 6 (ID 추가) -->
-    <View
-        android:id="@+id/star_6"
-        android:layout_width="3dp" android:layout_height="3dp" android:background="@drawable/star_dot"
-        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="80dp" android:layout_marginEnd="50dp" />
+    <include layout="@layout/background_layout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_content_container"

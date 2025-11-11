@@ -11,7 +11,7 @@ import android.content.Intent; // 1. 화면 전환을 위해 Import
 // ViewBinding Import
 import com.example.sera.databinding.ActivityRecordingBinding;
 
-public class RecordingActivity extends AppCompatActivity {
+public class RecordingActivity extends BaseActivity {
 
     private ActivityRecordingBinding binding;
     private MainViewModel viewModel;
@@ -73,55 +73,47 @@ public class RecordingActivity extends AppCompatActivity {
 
     // --- ViewModel LiveData 구독 ---
     private void setupObservers() {
-        // isRecording 상태에 따라 UI 그룹 가시성 변경
-        viewModel.isRecording().observe(this, isRecording -> {
-            binding.idleGroup.setVisibility(isRecording ? View.GONE : View.VISIBLE);
-            binding.recordingGroup.setVisibility(isRecording ? View.VISIBLE : View.GONE);
-            binding.menuButton.setVisibility(isRecording ? View.GONE : View.VISIBLE);
-        });
+        // isRecording 또는 isAnalyzing이 변경될 때마다 updateUiState() 함수를 호출
+        viewModel.isRecording().observe(this, isRecording -> updateUiState());
+        viewModel.isAnalyzing().observe(this, isAnalyzing -> updateUiState());
 
-        // isAnalyzing 상태에 따라 UI 그룹 가시성 변경
-        viewModel.isAnalyzing().observe(this, isAnalyzing -> {
-            binding.analyzingGroup.setVisibility(isAnalyzing ? View.VISIBLE : View.GONE);
-            if (isAnalyzing) {
-                binding.idleGroup.setVisibility(View.GONE);
-                binding.recordingGroup.setVisibility(View.GONE);
-            }
-        });
-
-        // 시간 텍스트 업데이트
+        // 시간 텍스트는 별도로 업데이트
         viewModel.formattedTime.observe(this, timeString -> {
             binding.timeLabel.setText(timeString);
         });
-        /*
+
+        // 결과 화면 이동 관찰자 (주석 해제)
         viewModel.navigateToResult().observe(this, shouldNavigate -> {
             if (shouldNavigate) {
-                // ResultActivity를 띄우는 인텐트 생성
                 Intent intent = new Intent(RecordingActivity.this, ResultActivity.class);
                 startActivity(intent);
-
-                // 신호(Event) 리셋
                 viewModel.onResultNavigationDone();
             }
         });
-        */
     }
-    private void applyStarAnimation(int[] starIds) {
-        // R.anim.star_float_twinkle이 res/anim 폴더에 있어야 합니다.
-        final Animation starAnimation = AnimationUtils.loadAnimation(this, R.anim.star_float_twinkle);
-        final Random random = new Random();
+    private void updateUiState() {
+        // ViewModel에서 현재 상태 값을 가져옴
+        boolean isRecording = viewModel.isRecording().getValue() != null && viewModel.isRecording().getValue();
+        boolean isAnalyzing = viewModel.isAnalyzing().getValue() != null && viewModel.isAnalyzing().getValue();
 
-        for (int id : starIds) {
-            final View starView = findViewById(id);
-            if (starView != null) {
-                long delayMillis = random.nextInt(1500);
-                starView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        starView.startAnimation(starAnimation);
-                    }
-                }, delayMillis);
-            }
+        if (isRecording) {
+            // "녹음 중" 상태
+            binding.idleGroup.setVisibility(View.GONE);
+            binding.analyzingGroup.setVisibility(View.GONE);
+            binding.recordingGroup.setVisibility(View.VISIBLE);
+            binding.menuButton.setVisibility(View.GONE);
+        } else if (isAnalyzing) {
+            // "분석 중" 상태
+            binding.idleGroup.setVisibility(View.GONE);
+            binding.recordingGroup.setVisibility(View.GONE);
+            binding.analyzingGroup.setVisibility(View.VISIBLE);
+            binding.menuButton.setVisibility(View.VISIBLE);
+        } else {
+            // "대기 중" 상태 (녹음 중도 아니고, 분석 중도 아닐 때)
+            binding.analyzingGroup.setVisibility(View.GONE);
+            binding.recordingGroup.setVisibility(View.GONE);
+            binding.idleGroup.setVisibility(View.VISIBLE);
+            binding.menuButton.setVisibility(View.VISIBLE);
         }
     }
 }

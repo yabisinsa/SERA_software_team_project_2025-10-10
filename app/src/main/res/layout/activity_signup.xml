@@ -11,19 +11,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/dark_blue_gradient" />
 
-    <!-- 별 7 (ID 추가) -->
-    <View android:id="@+id/star_7" android:layout_width="3dp" android:layout_height="3dp" android:background="@drawable/star_dot" app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="50dp" android:layout_marginStart="80dp" />
-    <!-- 별 8 (ID 추가) -->
-    <View android:id="@+id/star_8" android:layout_width="2.5dp" android:layout_height="2.5dp" android:background="@drawable/star_dot" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="80dp" android:layout_marginEnd="120dp" />
-    <!-- 별 9 (ID 추가) -->
-    <View android:id="@+id/star_9" android:layout_width="4dp" android:layout_height="4dp" android:background="@drawable/star_dot" app:layout_constraintTop_toBottomOf="@+id/signup_content_container" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="30dp" android:layout_marginStart="40dp" />
-    <!-- 별 10 (ID 추가) -->
-    <View android:id="@+id/star_10" android:layout_width="3.5dp" android:layout_height="3.5dp" android:background="@drawable/star_dot" app:layout_constraintBottom_toTopOf="@+id/signup_content_container" app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="20dp" android:layout_marginEnd="70dp" />
-    <!-- 별 11 (ID 추가) -->
-    <View android:id="@+id/star_11" android:layout_width="2.5dp" android:layout_height="2.5dp" android:background="@drawable/star_dot" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="100dp" android:layout_marginStart="150dp" />
-    <!-- 별 12 (ID 추가) -->
-    <View android:id="@+id/star_12" android:layout_width="3dp" android:layout_height="3dp" android:background="@drawable/star_dot" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="80dp" android:layout_marginEnd="50dp" />
-
+    <include layout="@layout/background_layout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_content_container"
