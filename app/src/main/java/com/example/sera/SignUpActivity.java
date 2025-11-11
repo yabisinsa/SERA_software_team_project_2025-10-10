@@ -1,8 +1,6 @@
 package com.example.sera;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -14,58 +12,67 @@ import android.widget.Toast;
 import android.content.Intent;
 import java.util.Random; // Random 클래스 추가
 
-public class MainActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
+    private EditText nameEditText;
     private EditText emailEditText;
     private EditText passwordEditText;
-    private Button loginButton;
-    private TextView signUpTextView;
+    private EditText confirmPasswordEditText;
+    private Button signUpButton;
+    private TextView loginLinkTextView;
 
-    // 별 ID 배열 정의 (activity_main.xml에 추가된 ID)
+    // 별 ID 배열 정의 (activity_signup.xml에 추가된 ID)
     private final int[] STAR_IDS = new int[]{
-            R.id.star_1, R.id.star_2, R.id.star_3,
-            R.id.star_4, R.id.star_5, R.id.star_6
+            R.id.star_7, R.id.star_8, R.id.star_9,
+            R.id.star_10, R.id.star_11, R.id.star_12
     };
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_signup);
 
-        // ⭐ 애니메이션 적용 메서드 호출
-        applyStarAnimation(STAR_IDS);
+        // 애니메이션 적용
+        applyStarAnimation(STAR_IDS); // ⭐ 별 애니메이션 적용 메서드 호출
 
-        // XML 레이아웃에서 요소들을 ID로 연결합니다.
+        // XML 요소 연결
+        nameEditText = findViewById(R.id.editText_name);
         emailEditText = findViewById(R.id.editText_email);
         passwordEditText = findViewById(R.id.editText_password);
-        loginButton = findViewById(R.id.button_login);
-        signUpTextView = findViewById(R.id.textView_signup);
+        confirmPasswordEditText = findViewById(R.id.editText_confirm_password);
+        signUpButton = findViewById(R.id.button_signup);
+        loginLinkTextView = findViewById(R.id.textView_login_link);
 
-        // 1. 로그인 버튼 클릭 이벤트 처리
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        // 1. 가입하기 버튼 클릭 이벤트 처리
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String name = nameEditText.getText().toString();
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
+                String confirmPassword = confirmPasswordEditText.getText().toString();
 
-                if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "이메일과 비밀번호를 모두 입력해 주세요.", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, RecordingActivity.class);
-                    startActivity(intent);
-                    finish();
+                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                    Toast.makeText(SignUpActivity.this, "모든 필드를 입력해 주세요.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                if (!password.equals(confirmPassword)) {
+                    Toast.makeText(SignUpActivity.this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Toast.makeText(SignUpActivity.this, "회원가입 완료! 이름: " + name, Toast.LENGTH_LONG).show();
             }
         });
 
-        // 2. 회원가입 텍스트 클릭 이벤트 처리: SignUpActivity로 이동
-        signUpTextView.setOnClickListener(new View.OnClickListener() {
+        // 2. 로그인 링크 클릭 이벤트 처리: MainActivity로 돌아가기
+        loginLinkTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
