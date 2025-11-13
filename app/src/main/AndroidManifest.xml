@@ -30,6 +30,21 @@
         <activity
             android:name=".ResultActivity"
             android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FileuploadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AnalysisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailAnalysisActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

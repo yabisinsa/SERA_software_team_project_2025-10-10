@@ -3,4 +3,19 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="mint_color">#63E6BE</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="purple_background">#1A0F2B</color>
+    <color name="card_background_purple">#362B4A</color>
+    <color name="light_purple_icon">#BB86FC</color>
+    <color name="light_purple_text">#E0E0E0</color>
+    <color name="deep_purple_start">#1A0F2B</color>
+    <color name="deep_purple_end">#362B4A</color>
+    <color name="mic_green_start">#00BCD4</color>
+    <color name="mic_green_end">#0097A7</color>
+    <color name="edit_button_text_color">#BB86FC</color>
+    <color name="red_logout_button">#FF0000</color>
 </resources>

@@ -54,19 +54,28 @@ public class RecordingActivity extends BaseActivity {
             binding.menuGroup.setVisibility(View.GONE);
         });
 
-        // 메뉴 아이템 클릭
+        // 메뉴 프로필 클릭
         binding.menuProfile.setOnClickListener(v -> {
-            viewModel.onProfileClicked();
+            // 1. ProfileActivity로 가는 Intent 생성
+            Intent intent = new Intent(RecordingActivity.this, ProfileActivity.class);
+            startActivity(intent);
+
             binding.menuGroup.setVisibility(View.GONE);
         });
-
+        //메뉴 파일 업로드 클릭
         binding.menuUpload.setOnClickListener(v -> {
-            viewModel.onFileUploadClicked();
+            // 2. FileuploadActivity로 가는 Intent 생성
+            Intent intent = new Intent(RecordingActivity.this, FileuploadActivity.class);
+            startActivity(intent);
+
             binding.menuGroup.setVisibility(View.GONE);
         });
 
         binding.menuHistory.setOnClickListener(v -> {
-            viewModel.onHistoryClicked();
+            // 1. HistoryActivity로 가는 Intent 생성
+            Intent intent = new Intent(RecordingActivity.this, HistoryActivity.class);
+            startActivity(intent);
+
             binding.menuGroup.setVisibility(View.GONE);
         });
     }

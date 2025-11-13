@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"  android:paddingBottom="10dp"> <TextView
+    android:id="@+id/tv_emotion_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@android:color/white"
+    android:textSize="16sp"  android:textStyle="bold"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:text="기쁨" />
+
+    <TextView
+        android:id="@+id/tv_emotion_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"  android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="75%" />
+
+    <ProgressBar
+        android:id="@+id/pb_emotion_progress"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_marginTop="10dp"  android:max="100"
+        android:progress="75"
+        android:progressDrawable="@drawable/rounded_progress_bar"
+        app:layout_constraintTop_toBottomOf="@id/tv_emotion_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
