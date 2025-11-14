@@ -91,10 +91,16 @@ public class RecordingActivity extends BaseActivity {
             binding.timeLabel.setText(timeString);
         });
 
-        // 결과 화면 이동 관찰자 (주석 해제)
-        viewModel.navigateToResult().observe(this, shouldNavigate -> {
-            if (shouldNavigate) {
+        // [수정] 결과 화면 이동 관찰자
+        viewModel.navigateToResult().observe(this, item -> {
+            // 1. (수정) 'shouldNavigate' 변수명을 'item'으로 변경
+            // 2. (수정) item이 boolean이 아닌 null인지 아닌지 체크
+            if (item != null) {
                 Intent intent = new Intent(RecordingActivity.this, ResultActivity.class);
+
+                // 3. (추가) Intent에 AnalysisItem 객체를 통째로 담아서 보냄
+                intent.putExtra("ANALYSIS_RESULT_ITEM", (java.io.Serializable) item);
+
                 startActivity(intent);
                 viewModel.onResultNavigationDone();
             }

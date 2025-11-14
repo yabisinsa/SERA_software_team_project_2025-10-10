@@ -2,7 +2,7 @@ package com.example.sera;
 
 import java.util.Map;
 
-public class AnalysisItem {
+public class AnalysisItem implements java.io.Serializable{
     // 1. 필요한 기본 데이터 변수 선언
     String date;         // "2025년 10월 19일"
     String time;         // "오후 7:30"

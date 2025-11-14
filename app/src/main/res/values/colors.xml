@@ -18,4 +18,14 @@
     <color name="mic_green_end">#0097A7</color>
     <color name="edit_button_text_color">#BB86FC</color>
     <color name="red_logout_button">#FF0000</color>
+    <color name="emotion_joy_main">#F9C74F</color>
+    <color name="emotion_sadness_main">#4C6EF5</color>
+    <color name="emotion_anger_main">#FA5252</color>
+    <color name="emotion_anxiety_main">#BE4BDB</color>
+    <color name="emotion_neutral_main">#ADB5BD</color>
+    <color name="emotion_joy_bg">#20F9C74F</color>
+    <color name="emotion_sadness_bg">#204C6EF5</color>
+    <color name="emotion_anger_bg">#20FA5252</color>
+    <color name="emotion_anxiety_bg">#20BE4BDB</color>
+    <color name="emotion_neutral_bg">#20ADB5BD</color>
 </resources>
