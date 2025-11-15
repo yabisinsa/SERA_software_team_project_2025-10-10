@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.view.View;
+import android.content.Intent;
+import android.widget.Button;
 
 public class ProfileActivity extends BaseActivity {
 
@@ -33,22 +35,27 @@ public class ProfileActivity extends BaseActivity {
             });
         }
 
-        // 2. 로그아웃 카드뷰 연결 및 이벤트 설정
+        // 2. 로그아웃 버튼 -> 로그인 화면으로 이동
         CardView cardLogout = findViewById(R.id.card_logout);
         if (cardLogout != null) {
-            cardLogout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // 실제 로그아웃 로직 대신 토스트 메시지를 표시합니다.
-                    Toast.makeText(ProfileActivity.this, "로그아웃을 시도합니다.", Toast.LENGTH_SHORT).show();
+            cardLogout.setOnClickListener(v -> {
+                Toast.makeText(ProfileActivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
 
-                    // TODO: 실제 앱에서는 여기에 로그아웃 처리 및 로그인 화면으로 이동하는 Intent 로직을 추가해야 합니다.
-                }
+                // 로그인 화면(MainActivity)으로 이동
+                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                // [중요] 이전의 모든 Activity 스택을 지우고 새 화면을 띄움
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             });
         }
 
-        // 3. (선택적) 프로필 편집 버튼 연결
-        // Button btnEditProfile = findViewById(R.id.btn_edit_profile);
-        // 여기에 편집 기능 시작 로직을 추가할 수 있습니다.
+        // 3. 프로필 편집 버튼 -> ProfileEditActivity로 이동
+        Button btnEditProfile = findViewById(R.id.btn_edit_profile);
+        if (btnEditProfile != null) {
+            btnEditProfile.setOnClickListener(v -> {
+                Intent intent = new Intent(ProfileActivity.this, ProfileEditActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 }
