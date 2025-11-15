@@ -9,10 +9,16 @@
     android:layout_marginEnd="16dp"
     android:layout_marginTop="12dp"
     app:cardCornerRadius="16dp"
-    app:cardBackgroundColor="#3A315A"> <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:strokeWidth="1dp"
+    app:strokeColor="#505050">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/result_card_dark_bg"
+        android:padding="16dp">
 
     <TextView
         android:id="@+id/tv_date"
@@ -44,7 +50,8 @@
         android:textColor="@android:color/white"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:chipBackgroundColor="#5A527F" app:chipCornerRadius="16dp"
+        app:chipBackgroundColor="#5A527F"
+        app:chipCornerRadius="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_date"
         tools:text="😊 기쁨" />
@@ -70,6 +77,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@android:color/white" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
