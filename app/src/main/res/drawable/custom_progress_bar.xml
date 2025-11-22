@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 배경 (어두운 회색) -->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="4dp"/>
+            <solid android:color="#50FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- 채워지는 부분 (노란색 그라데이션) -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="4dp"/>
+                <gradient
+                    android:startColor="#FFC107"
+                    android:endColor="#FFD54F"
+                    android:angle="0"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>
