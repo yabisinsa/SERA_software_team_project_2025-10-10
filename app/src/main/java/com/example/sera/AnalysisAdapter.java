@@ -1,86 +1,90 @@
 package com.example.sera;
 
-import android.content.Intent; // Intent 사용을 위해 추가
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar; // [필수] 프로그레스 바
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.chip.Chip;
 import java.util.List;
+import java.util.Map;
+import java.util.Collections;
 
-// 1. RecyclerView.Adapter를 상속받고, 우리가 만들 ViewHolder를 지정
-public class AnalysisAdapter extends RecyclerView.Adapter<AnalysisAdapter.AnalysisViewHolder> {
+public class AnalysisAdapter extends RecyclerView.Adapter<AnalysisAdapter.ViewHolder> {
 
-    // 2. 표시할 데이터 리스트
-    private List<AnalysisItem> itemList;
+    private List<AnalysisItem> items;
 
-    // 3. 생성자: 밖(Activity)에서 데이터 리스트를 받아옴
-    public AnalysisAdapter(List<AnalysisItem> itemList) {
-        this.itemList = itemList;
+    public AnalysisAdapter(List<AnalysisItem> items) {
+        this.items = items;
     }
 
-    // 4. list_item_analysis.xml 레이아웃을 '객체'로 만들어주는 부분
+    public void setItems(List<AnalysisItem> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
-    public AnalysisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // 'list_item_analysis' 레이아웃을 View 객체로 만듦 (Inflate)
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_analysis, parent, false);
-        return new AnalysisViewHolder(view); // ViewHolder에 담아서 반환
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_analysis, parent, false);
+        return new ViewHolder(view);
     }
 
-    // 5. 생성된 ViewHolder에 실제 데이터를 '바인딩' (연결)해주는 부분
     @Override
-    public void onBindViewHolder(@NonNull AnalysisViewHolder holder, int position) {
-        // 리스트에서 현재 위치(position)에 맞는 데이터를 가져옴
-        AnalysisItem item = itemList.get(position);
-
-        // ViewHolder의 뷰들에 데이터를 설정
-        holder.tv_date.setText(item.getDate());
-        holder.tv_time.setText(item.getTime());
-        holder.chip_emotion.setText(item.getEmotionTag());
-
-        // ★★★ 수정: 리스트에는 상위 2개 감정만 표시하도록 변경 ★★★
-        holder.tv_emotion_stats.setText(item.getTopTwoStats());
-
-        // ▼▼▼ 리스트 아이템 클릭 리스너 (데이터 전달 부분도 수정) ▼▼▼
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(holder.itemView.getContext(), DetailAnalysisActivity.class);
-
-            // ★★★ 수정: Map 데이터를 DetailActivity로 직접 전달하기 위해 Serializable 사용 ★★★
-            intent.putExtra(DetailAnalysisActivity.EXTRA_DATE, item.getDate());
-            intent.putExtra(DetailAnalysisActivity.EXTRA_TIME, item.getTime());
-            intent.putExtra(DetailAnalysisActivity.EXTRA_EMOTION_TAG, item.getEmotionTag());
-            intent.putExtra(DetailAnalysisActivity.EXTRA_EMOTION_MAP, (java.io.Serializable) item.getEmotionMap()); // Map 전달
-
-            holder.itemView.getContext().startActivity(intent);
-        });
-        // ▲▲▲ 리스트 아이템 클릭 리스너 추가 끝 ▲▲▲
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.bind(items.get(position));
     }
 
-    // 6. 리스트에 아이템이 총 몇 개인지 알려주는 부분
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return items != null ? items.size() : 0;
     }
 
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        // [수정] percentText와 progressBar 변수 추가
+        TextView dateText, timeText, emotionText, percentText;
+        ProgressBar progressBar;
 
-    // 7. ViewHolder 클래스 (제일 중요!)
-    public static class AnalysisViewHolder extends RecyclerView.ViewHolder {
-
-        TextView tv_date;
-        TextView tv_time;
-        Chip chip_emotion;
-        TextView tv_emotion_stats;
-
-        public AnalysisViewHolder(@NonNull View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
-            tv_date = itemView.findViewById(R.id.tv_date);
-            tv_time = itemView.findViewById(R.id.tv_time);
-            chip_emotion = itemView.findViewById(R.id.chip_emotion);
-            tv_emotion_stats = itemView.findViewById(R.id.tv_emotion_stats);
+            // [수정] XML의 ID와 연결 (findViewById)
+            dateText = itemView.findViewById(R.id.tv_date);
+            timeText = itemView.findViewById(R.id.tv_time);
+            emotionText = itemView.findViewById(R.id.tv_emotion);
+
+            // 새로 추가된 뷰들 연결
+            percentText = itemView.findViewById(R.id.tv_percent);
+            progressBar = itemView.findViewById(R.id.progressBar_confidence);
+        }
+
+        void bind(AnalysisItem item) {
+            if (dateText != null) dateText.setText(item.getDate());
+            if (timeText != null) timeText.setText(item.getTime());
+            if (emotionText != null) emotionText.setText(item.getEmotionTag());
+
+            // [핵심] 여기서 진짜 데이터를 계산해서 뷰에 넣어줍니다!
+            int maxPercent = 0;
+            Map<String, Integer> map = item.getEmotionMap();
+
+            // 데이터가 있으면 가장 높은 값 찾기
+            if (map != null && !map.isEmpty()) {
+                try {
+                    maxPercent = Collections.max(map.values());
+                } catch (Exception e) {
+                    maxPercent = 0;
+                }
+            }
+
+            // [핵심] 퍼센트 텍스트 업데이트 ("85%" -> "진짜값%")
+            if (percentText != null) {
+                percentText.setText(maxPercent + "%");
+            }
+
+            // [핵심] 프로그레스 바 게이지 업데이트
+            if (progressBar != null) {
+                progressBar.setProgress(maxPercent);
+            }
         }
     }
 }

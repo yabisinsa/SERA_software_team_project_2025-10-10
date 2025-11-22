@@ -1,23 +1,23 @@
 package com.example.sera;
 
 import android.os.Bundle;
-import android.widget.ImageButton; // ImageButton import 추가
+import android.view.View;
+import android.widget.ImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.widget.TextView; // 안내 문구용
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.LinkedHashMap;
 
-// BaseActivity를 상속받아 배경 애니메이션 기능 사용
 public class HistoryActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
-    private AnalysisAdapter adapter;
-    private List<AnalysisItem> analysisItemList;
+    private AnalysisAdapter adapter; // (주의: AnalysisAdapter 클래스가 있어야 합니다)
 
-    // Star ID 배열 (BaseActivity의 applyStarAnimation에 사용됨)
+    // 데이터가 없을 때 보여줄 안내 문구 (레이아웃에 있다면 연결, 없다면 생략 가능)
+    // private TextView emptyView;
+
     private final int[] STAR_IDS = new int[]{
             R.id.star_1, R.id.star_2, R.id.star_3,
             R.id.star_4, R.id.star_5, R.id.star_6
@@ -28,89 +28,43 @@ public class HistoryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        // 배경 애니메이션 적용
         applyStarAnimation(STAR_IDS);
 
-        // 1. 뒤로가기 버튼 처리 (XML의 ImageButton 사용)
         ImageButton backButton = findViewById(R.id.historyBackButton);
         if (backButton != null) {
             backButton.setOnClickListener(v -> finish());
         }
 
-        // 2. RecyclerView 찾기 및 설정
         recyclerView = findViewById(R.id.rv_analysis_history);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // 3. 샘플 데이터 생성
-        analysisItemList = createSampleData();
-
-        // 4. 어댑터 설정 및 연결
-        adapter = new AnalysisAdapter(analysisItemList);
+        // 1. 어댑터 초기화 (처음엔 빈 리스트)
+        adapter = new AnalysisAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
+
+        // 2. 저장된 데이터 불러오기
+        loadHistoryData();
     }
 
-    /**
-     * 분석 기록 샘플 데이터를 생성하는 헬퍼 메서드
-     * @return 생성된 AnalysisItem 리스트
-     */
-    private List<AnalysisItem> createSampleData() {
-        List<AnalysisItem> list = new ArrayList<>();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 화면에 돌아올 때마다 갱신
+        loadHistoryData();
+    }
 
-        // 1. 기쁨 (Joy)
-        Map<String, Integer> map1 = new LinkedHashMap<>();
-        map1.put("기쁨", 75);
-        map1.put("중립", 10);
-        map1.put("슬픔", 8);
-        map1.put("불안", 5);
-        map1.put("분노", 2);
-        list.add(new AnalysisItem(
-                "2025년 10월 19일", "오후 7:30", "😊 기쁨", map1
-        ));
+    // [핵심 수정] 샘플 데이터 대신 진짜 데이터를 불러오는 함수
+    private void loadHistoryData() {
+        // HistoryManager에서 저장된 리스트 가져오기
+        List<AnalysisItem> savedList = HistoryManager.getInstance(this).getHistory();
 
-        // 2. 슬픔 (Sadness)
-        Map<String, Integer> map2 = new LinkedHashMap<>();
-        map2.put("슬픔", 62);
-        map2.put("불안", 18);
-        map2.put("중립", 15);
-        map2.put("기쁨", 3);
-        map2.put("분노", 2);
-        list.add(new AnalysisItem(
-                "2025년 10월 18일", "오후 3:15", "😢 슬픔", map2
-        ));
-
-        // 3. 불안 (Anxiety)
-        Map<String, Integer> map3 = new LinkedHashMap<>();
-        map3.put("불안", 55);
-        map3.put("중립", 25);
-        map3.put("슬픔", 10);
-        map3.put("기쁨", 5);
-        map3.put("분노", 5);
-        list.add(new AnalysisItem(
-                "2025년 10월 17일", "오전 10:45", "😰 불안", map3
-        ));
-
-        // 4. 기쁨 (Joy)
-        Map<String, Integer> map4 = new LinkedHashMap<>();
-        map4.put("기쁨", 80);
-        map4.put("중립", 12);
-        map4.put("불안", 5);
-        map4.put("슬픔", 2);
-        map4.put("분노", 1);
-        list.add(new AnalysisItem(
-                "2025년 10월 16일", "오후 9:20", "😊 기쁨", map4
-        ));
-
-        // 5. 분노 (Anger) - 스크롤 테스트용
-        Map<String, Integer> map5 = new LinkedHashMap<>();
-        map5.put("분노", 70);
-        map5.put("슬픔", 15);
-        map5.put("불안", 5);
-        map5.put("중립", 5);
-        map5.put("기쁨", 5);
-        list.add(new AnalysisItem(
-                "2025년 10월 15일", "오후 6:00", "😡 분노", map5
-        ));
-
-        return list;
+        if (savedList != null && !savedList.isEmpty()) {
+            // 데이터가 있으면 어댑터에 전달
+            adapter.setItems(savedList); // (어댑터에 setItems 메서드가 필요하거나, 생성자로 전달)
+            adapter.notifyDataSetChanged();
+        } else {
+            // 데이터가 없으면 (빈 화면 처리 등을 여기서 할 수 있음)
+            // Toast.makeText(this, "저장된 기록이 없습니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

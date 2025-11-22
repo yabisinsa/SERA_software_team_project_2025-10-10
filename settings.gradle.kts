@@ -1,12 +1,8 @@
+// settings.gradle.kts
+
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -19,6 +15,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "S.E.R.A_Project"
+// 스크린샷에 보이는 프로젝트 이름을 사용했습니다.
+rootProject.name = "LERAN_SERA_Project_S"
 include(":app")
- 
