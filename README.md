@@ -87,6 +87,44 @@ project/
 │   package.json         # 프로젝트 종속성 및 스크립트 정의
 ├── .gitignore               # Git 무시 파일 목록
 └── README.md                # 프로젝트 개요 및 사용법
+
+app/
+├──src/
+    ├──main/
+         ├──java
+         │     ├── AnalysisActivity.java       # 파일 수신 확인 및 분석 대기 화면
+         │     ├── AnalysisItem.java           # 감정 분석 결과 데이터 모델
+         │     ├── FileuploadActivity.java     # 오디오 파일 선택 및 업로드 화면
+         │     ├── DetailAnalysisActivity.java # 감정 상세 분포 시각화 결과 화면
+         │     ├── AnalysisAdapter.java        # 분석 기록 리스트 관리 및 연결 어댑터
+         │     ├── BaseActivity.java           # 공통 배경 애니메이션 정의 부모 클래스
+         │     ├── MainActivity.java      # 초기 진입 로그인 및 인증 처리 화면
+         │     ├── SignUpActivity.java    # 신규 사용자 정보 입력 및 회원가입 화면
+         │     ├── RecordingActivity.java # 녹음 제어 및 상태 관리 메인 화면
+         │     ├── MainViewModel.java     # 녹음 상태/타이머/데이터 로직 관리 뷰모델
+         │     ├── ResultActivity.java    # 감정 분석 결과 시각화 및 저장/공유 화면
+         │     ├── HistoryActivity.java   # 분석 기록 리스트 조회 화면
+         │     ├── HistoryManager.java    # 분석 기록 데이터 관리 싱글톤 저장소
+         │     ├── ProfileActivity.java   # 사용자 프로필 조회 및 로그아웃 화면
+         │
+         ├── res/
+              ├── layout/
+              │       ├── activity_main.xml            # 로그인 화면 레이아웃
+              │       ├── activity_profile.xml         # 사용자 프로필 및 설정 화면 레이아웃
+              │       ├── activity_fileupload.xml      # 파일 업로드 UI 레이아웃
+              │       ├── activity_analysis.xml        # 분석 대기 및 진행 상태 화면 레이아웃
+              │       ├── activity_detail_analysis.xml # 감정 분석 상세 결과 시각화 레이아웃
+              │       ├── activity_history.xml         # 분석 기록 리스트 화면 레이아웃
+              │       ├── activity_recording.xml        # 녹음 및 분석 상태 관리 메인 레이아웃
+              │       ├── activity_signup.xml           # 회원가입 입력 폼 레이아웃
+              │       ├── activity_result.xml           # 분석 결과 및 인사이트 시각화 레이아웃
+              │       ├── background_layout.xml         # 공통 배경 및 별 애니메이션 포함 레이아웃
+              │       ├── list_item_analysis.xml        # 기록 리스트용 아이템 디자인
+              │       ├── item_emotion_progress_bar.xml # 감정 분포 그래프용 아이템 디자인
+              │
+              ├── drawable  # UI 요소의 애니메이션 동작(이동, 회전, 투명도 등) 설정을 정의
+              ├── anime     # 이미지, 아이콘, 도형(Shape) 등 화면에 그려지는 그래픽 리소스
+              ├── value     # 문자열(String), 색상(Color), 테마(Style) 등 앱의 공통 상수 값을 관리
 ```
 
 <br/>
