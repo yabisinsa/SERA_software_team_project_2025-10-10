@@ -98,23 +98,23 @@ app/
          │     ├── DetailAnalysisActivity.java # 감정 상세 분포 시각화 결과 화면
          │     ├── AnalysisAdapter.java        # 분석 기록 리스트 관리 및 연결 어댑터
          │     ├── BaseActivity.java           # 공통 배경 애니메이션 정의 부모 클래스
-         │     ├── MainActivity.java      # 초기 진입 로그인 및 인증 처리 화면
-         │     ├── SignUpActivity.java    # 신규 사용자 정보 입력 및 회원가입 화면
-         │     ├── RecordingActivity.java # 녹음 제어 및 상태 관리 메인 화면
-         │     ├── MainViewModel.java     # 녹음 상태/타이머/데이터 로직 관리 뷰모델
-         │     ├── ResultActivity.java    # 감정 분석 결과 시각화 및 저장/공유 화면
-         │     ├── HistoryActivity.java   # 분석 기록 리스트 조회 화면
-         │     ├── HistoryManager.java    # 분석 기록 데이터 관리 싱글톤 저장소
-         │     ├── ProfileActivity.java   # 사용자 프로필 조회 및 로그아웃 화면
+         │     ├── MainActivity.java           # 초기 진입 로그인 및 인증 처리 화면
+         │     ├── SignUpActivity.java         # 신규 사용자 정보 입력 및 회원가입 화면
+         │     ├── RecordingActivity.java      # 녹음 제어 및 상태 관리 메인 화면
+         │     ├── MainViewModel.java          # 녹음 상태/타이머/데이터 로직 관리 뷰모델
+         │     ├── ResultActivity.java         # 감정 분석 결과 시각화 및 저장/공유 화면
+         │     ├── HistoryActivity.java        # 분석 기록 리스트 조회 화면
+         │     ├── HistoryManager.java         # 분석 기록 데이터 관리 싱글톤 저장소
+         │     ├── ProfileActivity.java        # 사용자 프로필 조회 및 로그아웃 화면
          │
          ├── res/
               ├── layout/
-              │       ├── activity_main.xml            # 로그인 화면 레이아웃
-              │       ├── activity_profile.xml         # 사용자 프로필 및 설정 화면 레이아웃
-              │       ├── activity_fileupload.xml      # 파일 업로드 UI 레이아웃
-              │       ├── activity_analysis.xml        # 분석 대기 및 진행 상태 화면 레이아웃
-              │       ├── activity_detail_analysis.xml # 감정 분석 상세 결과 시각화 레이아웃
-              │       ├── activity_history.xml         # 분석 기록 리스트 화면 레이아웃
+              │       ├── activity_main.xml             # 로그인 화면 레이아웃
+              │       ├── activity_profile.xml          # 사용자 프로필 및 설정 화면 레이아웃
+              │       ├── activity_fileupload.xml       # 파일 업로드 UI 레이아웃
+              │       ├── activity_analysis.xml         # 분석 대기 및 진행 상태 화면 레이아웃
+              │       ├── activity_detail_analysis.xml  # 감정 분석 상세 결과 시각화 레이아웃
+              │       ├── activity_history.xml          # 분석 기록 리스트 화면 레이아웃
               │       ├── activity_recording.xml        # 녹음 및 분석 상태 관리 메인 레이아웃
               │       ├── activity_signup.xml           # 회원가입 입력 폼 레이아웃
               │       ├── activity_result.xml           # 분석 결과 및 인사이트 시각화 레이아웃
