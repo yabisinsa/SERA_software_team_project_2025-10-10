@@ -1,5 +1,5 @@
-<a href=" target="_blank">
-<img src="" alt="배너" width="100%"/>
+<a href="#" target="_blank">
+<img src="http://googleusercontent.com/image_collection/image_retrieval/18245433898637879909_0" alt="자바 파이썬 안드로이드 배너" width="100%"/>
 </a>
 
 <br/>
