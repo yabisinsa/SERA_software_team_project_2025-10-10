@@ -81,6 +81,9 @@ SERA_software_team_project_2025-10-10-1/
 │   ├── .dockerignore/            # 불필요한 파일 제외 파일
 ├── .gitignore                    # Git 무시 파일 목록
 └── README.md                     # 프로젝트 개요 및 사용법
+```
+## 6.2 App Structure (서버 구조)
+```
 app/
 ├──src/
     ├──main/
