@@ -44,13 +44,16 @@ $ npm start
 |  |  |  |  |  |  |  |  |
 |-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
 | 김형진    |  <img src="" alt="김형진" width="100"> | <ul><li>전체 프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>서버 개발</li></ul>     |
-| 박기훈    |  <img src="" alt="박기훈" width="100"> | <ul><li>어플리케이션 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 앱 개발</li></ul>     |
-| 손영주    |  <img src="" alt="손영주" width="100"> | <ul><li>어플리케이션 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 앱 개발</li></ul>     |
+
 | 안의진    |  <img src="" alt="안의진" width="100"> | <ul><li>API서버 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>서버 개발</li></ul>     |
 | 윤시훈    |  <img src="" alt="윤시훈" width="100"> | <ul><li>API서버 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>서버 개발</li></ul>     |
-| 임민하    |  <img src="" alt="임민하" width="100"> | <ul><li>어플리케이션 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 앱 개발</li></ul>     |
-| 장나정    |  <img src="" alt="장나정" width="100"> | <ul><li>어플리케이션 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>커스텀 앱 개발</li></ul>     |
+
 | 지훈    |  <img src="" alt="지훈" width="100"> | <ul><li>API서버 개발 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>서버 개발</li></ul>     |
+| 임민하    |  <img src="" alt="임민하" width="100"> | <ul><li>프로필 화면 구현</li><li>파일 업로드 화면 구현</li></ul>     |
+| 장나정    |  <img src="" alt="장나정" width="100"> | <ul><li>로그인 화면 구현</li><li>회원가입 화면 구현</li><li>메인 화면 기초 작업</li></ul>     |
+| 손영주    |  <img src="" alt="손영주" width="100"> | <ul><li>분석 기록 목록 화면 구현</li><li>리스트 어댑터 개발</li></ul>    
+| 박기훈    |  <img src="" alt="박기훈" width="100"> | <ul><li>메인 녹음 화면 고도화</li><li>분석 결과 화면 구현</li><li>프로필 편집 화면 구현</li></ul>     |
+
 </ul>    |
 
 <br/>
@@ -81,6 +84,43 @@ SERA_software_team_project_2025-10-10-1/
 │   ├── .dockerignore/            # 불필요한 파일 제외 파일
 ├── .gitignore                    # Git 무시 파일 목록
 └── README.md                     # 프로젝트 개요 및 사용법
+app/
+├──src/
+    ├──main/
+         ├──java
+         │     ├── AnalysisActivity.java       # 파일 수신 확인 및 분석 대기 화면
+         │     ├── AnalysisItem.java           # 감정 분석 결과 데이터 모델
+         │     ├── FileuploadActivity.java     # 오디오 파일 선택 및 업로드 화면
+         │     ├── DetailAnalysisActivity.java # 감정 상세 분포 시각화 결과 화면
+         │     ├── AnalysisAdapter.java        # 분석 기록 리스트 관리 및 연결 어댑터
+         │     ├── BaseActivity.java           # 공통 배경 애니메이션 정의 부모 클래스
+         │     ├── MainActivity.java           # 초기 진입 로그인 및 인증 처리 화면
+         │     ├── SignUpActivity.java         # 신규 사용자 정보 입력 및 회원가입 화면
+         │     ├── RecordingActivity.java      # 녹음 제어 및 상태 관리 메인 화면
+         │     ├── MainViewModel.java          # 녹음 상태/타이머/데이터 로직 관리 뷰모델
+         │     ├── ResultActivity.java         # 감정 분석 결과 시각화 및 저장/공유 화면
+         │     ├── HistoryActivity.java        # 분석 기록 리스트 조회 화면
+         │     ├── HistoryManager.java         # 분석 기록 데이터 관리 싱글톤 저장소
+         │     ├── ProfileActivity.java        # 사용자 프로필 조회 및 로그아웃 화면
+         │
+         ├── res/
+              ├── layout/
+              │       ├── activity_main.xml             # 로그인 화면 레이아웃
+              │       ├── activity_profile.xml          # 사용자 프로필 및 설정 화면 레이아웃
+              │       ├── activity_fileupload.xml       # 파일 업로드 UI 레이아웃
+              │       ├── activity_analysis.xml         # 분석 대기 및 진행 상태 화면 레이아웃
+              │       ├── activity_detail_analysis.xml  # 감정 분석 상세 결과 시각화 레이아웃
+              │       ├── activity_history.xml          # 분석 기록 리스트 화면 레이아웃
+              │       ├── activity_recording.xml        # 녹음 및 분석 상태 관리 메인 레이아웃
+              │       ├── activity_signup.xml           # 회원가입 입력 폼 레이아웃
+              │       ├── activity_result.xml           # 분석 결과 및 인사이트 시각화 레이아웃
+              │       ├── background_layout.xml         # 공통 배경 및 별 애니메이션 포함 레이아웃
+              │       ├── list_item_analysis.xml        # 기록 리스트용 아이템 디자인
+              │       ├── item_emotion_progress_bar.xml # 감정 분포 그래프용 아이템 디자인
+              │
+              ├── drawable  # UI 요소의 애니메이션 동작(이동, 회전, 투명도 등) 설정을 정의
+              ├── anime     # 이미지, 아이콘, 도형(Shape) 등 화면에 그려지는 그래픽 리소스
+              ├── value     # 문자열(String), 색상(Color), 테마(Style) 등 앱의 공통 상수 값을 관리
 ```
 
 <br/>
