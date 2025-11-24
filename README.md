@@ -1,5 +1,5 @@
 <a href="#" target="_blank">
-<img width="2816" height="1536" alt="Gemini_Generated_Image_v0quuv0quuv0quuv (1)" src="https://github.com/user-attachments/assets/b2e0b163-b6ee-4077-8888-463e236a451b" />
+<img width="281" height="153" alt="Gemini_Generated_Image_v0quuv0quuv0quuv (1)" src="https://github.com/user-attachments/assets/b2e0b163-b6ee-4077-8888-463e236a451b" />
 </a>
 
 
