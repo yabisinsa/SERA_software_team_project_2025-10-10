@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="mint_color">#63E6BE</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="purple_background">#1A0F2B</color>
+    <color name="card_background_purple">#362B4A</color>
+    <color name="light_purple_icon">#BB86FC</color>
+    <color name="light_purple_text">#E0E0E0</color>
+    <color name="deep_purple_start">#1A0F2B</color>
+    <color name="deep_purple_end">#362B4A</color>
+    <color name="mic_green_start">#00BCD4</color>
+    <color name="mic_green_end">#0097A7</color>
+    <color name="edit_button_text_color">#BB86FC</color>
+    <color name="red_logout_button">#FF0000</color>
+    <color name="emotion_joy_main">#F9C74F</color>
+    <color name="emotion_sadness_main">#4C6EF5</color>
+    <color name="emotion_anger_main">#FA5252</color>
+    <color name="emotion_anxiety_main">#BE4BDB</color>
+    <color name="emotion_neutral_main">#ADB5BD</color>
+    <color name="emotion_joy_bg">#20F9C74F</color>
+    <color name="emotion_sadness_bg">#204C6EF5</color>
+    <color name="emotion_anger_bg">#20FA5252</color>
+    <color name="emotion_anxiety_bg">#20BE4BDB</color>
+    <color name="emotion_neutral_bg">#20ADB5BD</color>
+</resources>
